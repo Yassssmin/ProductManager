@@ -23,7 +23,7 @@ public class ProductManager {
         Product[] searchResult = new Product[0];
 
         for (Product item : products) {
-            if (this.matches(item, text)) {
+            if (item.matches(text)) {
                 int length = searchResult.length + 1;
                 Product[] tmp = new Product[length];
 
@@ -37,40 +37,6 @@ public class ProductManager {
         }
 
         return searchResult;
-    }
-
-    public boolean matches(Product product, String search) {
-        if (product instanceof Book) {
-            Book book = (Book) product;
-
-            if (book.getName().equalsIgnoreCase(search)) {
-                return true;
-            }
-
-            if (book.getAuthor().equalsIgnoreCase(search)) {
-                return true;
-            }
-
-            return false;
-        } else if (product instanceof Smartphone) {
-            Smartphone smartphone = (Smartphone) product;
-
-            if (smartphone.getName().equalsIgnoreCase(search)) {
-                return true;
-            }
-
-            if (smartphone.getManufacturer().equalsIgnoreCase(search)) {
-                return true;
-            }
-
-            return false;
-        } else {
-            if (product.getName().equalsIgnoreCase(search)) {
-                return true;
-            }
-
-            return false;
-        }
     }
 }
 

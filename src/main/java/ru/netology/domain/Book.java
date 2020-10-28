@@ -15,4 +15,15 @@ public class Book extends Product {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    @Override
+    public boolean matches(String search) {
+        boolean searchByName = super.matches(search);
+
+        if (searchByName) {
+            return true;
+        }
+
+        return this.getAuthor().equalsIgnoreCase(search);
+    }
 }
