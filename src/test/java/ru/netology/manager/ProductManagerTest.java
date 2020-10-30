@@ -104,4 +104,30 @@ class ProductManagerTest {
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void shouldSearchProductByNameWithEmptyRepository() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        Product[] expected = new Product[]{};
+        Product[] actual = manager.searchBy("Second");
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldSearchProductByNameAmongOneElement() {
+        Product product = new Product(3,"Test", 300);
+
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.add(product);
+
+        Product[] expected = new Product[]{product};
+        Product[] actual = manager.searchBy("Test");
+
+        assertArrayEquals(expected, actual);
+    }
 }
